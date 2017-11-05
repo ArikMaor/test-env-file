@@ -1,6 +1,19 @@
 version: '1.0'
 steps:
-  test:
-    image: ubuntu
+  free:
+    image: alpine
     commands:
-      - '"${{CF_COMMIT_MESSAGE}}"'
+      - echo ${{CF_COMMIT}}
+  build:
+    type: build
+    image_name: arikmaor/dockerfile
+    dockerfile: Dockerfile
+    tag: ${{CF_BRANCH}}
+  push:
+    type: push
+    candidate: ${{build}}
+    tag: ${{CF_BRANCH}}
+    credentials:
+      username: ${{DOCKERHUB_USERNAME}}
+      password: ${{DOCKERHUB_PWD}}
+    fail_fast: false
