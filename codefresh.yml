@@ -3,7 +3,7 @@ steps:
   test:
     image: ubuntu
     commands:
-      - '"${{CF_COMMIT_MESSAGE}}"'
+      - echo '"${{CF_COMMIT_MESSAGE}}"'
   build:
     type: build
     image_name: arikmaor/dockerfile
