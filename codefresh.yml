@@ -1,7 +1,7 @@
 version: '1.0'
 steps:
   free:
-    image: alpine
+    image: ubuntu
     commands:
       - '"${{CF_COMMIT_MESSAGE}}"'
   build:
